@@ -6,8 +6,8 @@ export default function Home() {
   const router = useRouter();
 
   useEffect(() => {
-    router.push('/login');
+    router.push('/register');
   }, []);
 
-  return <p>Redirecting to login...</p>;
+  return <p>Redirecting to Register...</p>;
 }

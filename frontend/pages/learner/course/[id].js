@@ -20,7 +20,7 @@ export default function CoursePage() {
   }, [id]);
 
   const fetchCourse = async () => {
-    const res = await fetch(`http://localhost:5000/api/courses/${id}/full`, {
+    const res = await fetch(`https://modular-learning-backend.onrender.com/api/courses/${id}/full`, {
       headers: { Authorization: `Bearer ${token}` }
     });
     const data = await res.json();
@@ -45,7 +45,7 @@ export default function CoursePage() {
     alert(`You got ${correct} out of ${selectedChapter.questions.length} correct.`);
 
     // Save progress to backend
-    const res = await fetch(`http://localhost:5000/api/courses/${id}/progress/complete`, {
+    const res = await fetch(`https://modular-learning-backend.onrender.com/api/courses/${id}/progress/complete`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

@@ -10,7 +10,7 @@ export default function LoginPage() {
 
   const handleLogin = async () => {
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/login', {
+      const res = await axios.post('https://modular-learning-backend.onrender.com/api/auth/login', {
         email,
         password,
       });
@@ -30,22 +30,24 @@ export default function LoginPage() {
   };
 
   return (
-    <div style={{ padding: '20px' }}>
-      <h1>Login</h1>
+    <div style={{ padding: '20px', maxWidth: '400px', margin: 'auto' }}>
+      <h1 style={{ marginBottom: '20px' }}>Login</h1>
       <input
         placeholder="Email"
         value={email}
         onChange={e => setEmail(e.target.value)}
-        style={{ display: 'block', marginBottom: '10px' }}
+        style={{ width: '100%', padding: '8px', marginBottom: '10px' }}
       />
       <input
         placeholder="Password"
         type="password"
         value={password}
         onChange={e => setPassword(e.target.value)}
-        style={{ display: 'block', marginBottom: '10px' }}
+        style={{ width: '100%', padding: '8px', marginBottom: '10px' }}
       />
-      <button onClick={handleLogin}>Login</button>
+      <button onClick={handleLogin}
+      style={{ width: '100%', padding: '10px', backgroundColor: '#0070f3', color: 'white', border: 'none', cursor: 'pointer' }}
+      >Login</button>
     </div>
   );
 }
