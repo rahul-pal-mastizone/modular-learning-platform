@@ -6,11 +6,16 @@ require('dotenv').config();
 const app = express();
 
 // Allow frontend from Vercel
-app.use(cors({
-  origin: 'https://modular-learning-platform.vercel.app', // add your frontend domain here
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+const corsOptions = {
+  origin: 'https://modular-learning-platform.vercel.app',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
-}));
+};
+
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions)); // Handle preflight requests
+
 
 // Parse JSON
 app.use(express.json());
