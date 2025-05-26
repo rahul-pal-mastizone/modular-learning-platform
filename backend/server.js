@@ -3,45 +3,38 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 require('dotenv').config();
 
-// Routes
-const authRoutes = require('./routes/authRoutes');
-const courseRoutes = require('./routes/courseRoutes');
-const sectionRoutes = require('./routes/sectionRoutes');
-const unitRoutes = require('./routes/unitRoutes');
-const chapterRoutes = require('./routes/chapterRoutes');
-const questionRoutes = require('./routes/questionRoutes');
-const progressRoutes = require('./routes/progressRoutes');
-const testRoutes = require('./routes/testRoutes');
-
-// App
 const app = express();
 
-// Middleware
-app.use(cors()); // Enable CORS
-app.use(express.json()); // Parse JSON body
+// Allow frontend requests from Vercel
+app.use(cors({
+  origin: 'https://modular-learning-platform.vercel.app',
+  credentials: true,
+}));
 
-// Routes
-app.use('/api/test', testRoutes);
-app.use('/api/auth', authRoutes);
-app.use('/api/courses', courseRoutes);
-app.use('/api/sections', sectionRoutes);
-app.use('/api/units', unitRoutes);
-app.use('/api/chapters', chapterRoutes);
-app.use('/api/questions', questionRoutes);
-app.use('/api/progress', progressRoutes);
+app.use(express.json());
 
-// Default route
+// Route handlers
+app.use('/api/auth', require('./routes/authRoutes'));
+app.use('/api/courses', require('./routes/courseRoutes'));
+app.use('/api/sections', require('./routes/sectionRoutes'));
+app.use('/api/units', require('./routes/unitRoutes'));
+app.use('/api/chapters', require('./routes/chapterRoutes'));
+app.use('/api/questions', require('./routes/questionRoutes'));
+app.use('/api/progress', require('./routes/progressRoutes'));
+app.use('/api/test', require('./routes/testRoutes'));
+
+// Basic health check
 app.get('/', (req, res) => {
-  res.send('API is working');
+  res.send('API is running');
 });
 
-// MongoDB Connection
+// Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI)
-  .then(() => console.log('MongoDB connected'))
-  .catch(err => console.log('MongoDB connection error:', err));
+  .then(() => console.log('Connected to MongoDB'))
+  .catch(err => console.error('MongoDB connection error:', err));
 
-// Start Server
+// Start the server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`Server is live on port ${PORT}`);
 });
