@@ -11,7 +11,7 @@ export default function AdminDashboard() {
   const router = useRouter();
 
   useEffect(() => {
-    fetch('https://modular-learning-backend.onrender.com/api/courses')
+    fetch('https://modular-learning-platform.onrender.com/api/courses')
       .then(res => res.json())
       .then(setCourses)
       .catch(console.error);
@@ -27,7 +27,7 @@ export default function AdminDashboard() {
     }
 
     try {
-      const res = await fetch('https://modular-learning-backend.onrender.com/api/courses', {
+      const res = await fetch('https://modular-learning-platform.onrender.com/api/courses', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

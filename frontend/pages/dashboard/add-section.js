@@ -13,7 +13,7 @@ export default function AddSection() {
   useEffect(() => {
     async function fetchCourses() {
       try {
-        const res = await fetch('https://modular-learning-backend.onrender.com/api/courses');
+        const res = await fetch('https://modular-learning-platform.onrender.com/api/courses');
         const data = await res.json();
         setCourses(data);
       } catch (err) {
@@ -30,7 +30,7 @@ export default function AddSection() {
     const token = Cookies.get('token');
 
     try {
-      const res = await fetch(`https://modular-learning-backend.onrender.com/api/courses/${courseId}/sections`, {
+      const res = await fetch(`https://modular-learning-platform.onrender.com/api/courses/${courseId}/sections`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -21,7 +21,7 @@ export default function AddQuestion() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    fetch('https://modular-learning-backend.onrender.com/api/courses')
+    fetch('https://modular-learning-platform.onrender.com/api/courses')
       .then(res => res.json())
       .then(setCourses)
       .catch(() => alert('Failed to load courses'));
@@ -73,7 +73,7 @@ export default function AddQuestion() {
     const token = Cookies.get('token');
 
     try {
-      const res = await fetch(`https://modular-learning-backend.onrender.com/api/courses/${courseId}/sections/${sectionIndex}/units/${unitIndex}/chapters/${chapterIndex}/questions`, {
+      const res = await fetch(`https://modular-learning-platform.onrender.com/api/courses/${courseId}/sections/${sectionIndex}/units/${unitIndex}/chapters/${chapterIndex}/questions`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
