@@ -11,8 +11,8 @@ export default function RegisterPage() {
 
   const handleRegister = async () => {
     try {
-      const res = await axios.post('https://modular-learning-backend.onrender.com/api/auth/register', {
-        name,
+      const res = await axios.post('https://modular-learning-platform.onrender.com/api/auth/register', {
+        username: name,  // ✅ Make sure backend expects "username"
         email,
         password,
         role,
@@ -27,7 +27,7 @@ export default function RegisterPage() {
 
     } catch (err) {
       console.error('Registration error:', err.response?.data || err.message);
-      alert('❌ Registration failed: ' + (err.response?.data?.message || 'Server error'));
+      alert('❌ Registration failed: ' + (err.response?.data?.error || 'Server error'));
     }
   };
 
