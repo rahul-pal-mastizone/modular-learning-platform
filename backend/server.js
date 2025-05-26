@@ -7,9 +7,9 @@ const app = express();
 
 // Allow frontend from Vercel
 app.use(cors({
-  origin: ['https://modular-learning-platform.vercel.app'], // add your frontend domain here
+  origin: 'https://modular-learning-platform.vercel.app', // add your frontend domain here
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  credentials: true
+  credentials: true,
 }));
 
 // Parse JSON
